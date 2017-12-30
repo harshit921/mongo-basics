@@ -17,8 +17,12 @@ describe('reading Users of the database', () => {
     })
   });
 
-  it('Fine One user with a name' , () => {
-    User.findOne();
+  it('Fine One user with a name' , (done) => {
+    User.findOne({_id: joe._id})
+        .then((user) => {
+           assert(user.name === 'Joe');
+           done();
+        });
   });
 
 });

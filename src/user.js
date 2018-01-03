@@ -11,8 +11,16 @@ const UserSchema = new Schema({
      },
   email: String,
   age: Number,
-  postCount: Number,
-  posts: [PostSchema]
+  posts: [PostSchema],
+  likes:  Number,
+  blogPosts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'blogPost'
+    }]
+});
+
+UserSchema.virtual('postCount').get(function(){
+  return this.posts.length;
 });
 
 const User = mongoose.model('user', UserSchema);
